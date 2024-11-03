@@ -1,0 +1,62 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+# Only exists if Bazel was run
+/bazel-out
+
+# Dependencies
+**/node_modules/
+
+# Cordova
+/www
+/plugins
+/platforms
+
+# IDEs and editors
+.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+xcuserdata/
+*.sublime-workspace
+*.iml
+
+# IDE - VSCode
+.vscode/*
+.history/*
+
+# misc
+/.angular/cache
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+/reports
+src/coverage
+.angular
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# cypress
+/cypress/screenshots/
+/cypress/coverage/
+/cypress/snapshots/All Integration Specs/
+/cypress/snapshots/*/__diff_output__/
+/cypress/visual_diffs/
+/cypress/videos/
+/e2e/
+/.nyc_output
+/apps/**/coverage/
+**/.turbo/
+**/.next/

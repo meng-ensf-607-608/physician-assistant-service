@@ -34,7 +34,7 @@ public class PhysicianRepository {
     }
 
     public Physician findById(Long id) {
-        return jdbcTemplate.queryForObject("SELECT * FROM physician WHERE physician_id = ?", new Object[]{id}, new PhysicianRowMapper());
+        return jdbcTemplate.queryForObject("SELECT * FROM physician WHERE physician_id = ?", new PhysicianRowMapper(), id );
     }
 
     public int save(Physician physician) {

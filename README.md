@@ -1,4 +1,4 @@
-# Deployment Guide
+# Developer Playbook
 
 ## Prerequisites
 
@@ -37,7 +37,40 @@
 
 ## Accessing the Application
 
+#### Authentication
+
+1. `POST /auth/register` - Register a new user.
+   ```json
+   Request Body:
+   {
+      "username": "Harneet",
+      "password": "examplePassword"
+   }
+   Response Body: "User Harneet registered successfully"
+
+2. `POST /auth/login` - Authenticate a user and return a JWT token.
+   ```json
+   Request Body:
+   {
+      "username": "Harneet",
+      "password": "examplePassword"
+   }
+   Response Body: {
+      "token": "eyJhbGciOiJIUzI1NiJ9..."
+   }
+
 ### Endpoints
+
+#### Request Authentication
+> **Important Note:** All endpoints require the `Authorization` header with a valid JWT token.
+> Without this header in the request, you will get a `403 Forbidden` response.
+> Use the Login API in [Authentication](#Authentication) to get the token:
+   ```json
+   {
+     "Authorization": "Bearer <your_jwt_token>"
+   }
+   ```
+#### Appointment Endpoints
 
 1. **Get All Appointments**:
     - **URL**: `http://localhost:8080/v1/appointments/all`
@@ -74,6 +107,35 @@
 
 5. **Delete Appointment by ID**:
     - **URL**: `http://localhost:8080/v1/appointments/{id}`
+    - **Method**: DELETE
+    - **Response**: Status of the deletion operation
+
+#### Physician Endpoints
+
+1. **Get All Physicians**:
+    - **URL**: `http://localhost:8080/v1/physicians/all`
+    - **Method**: GET
+    - **Response**: List of all physicians
+2. **Get Physician by ID**:
+    - **URL**: `http://localhost:8080/v1/physicians/{id}`
+    - **Method**: GET
+    - **Response**: Physician details for the given ID
+3. **Create a New Physician**:
+    - **URL**: `http://localhost:8080/v1/physicians`
+    - **Method**: POST
+    - **Request Body**:
+        ```json
+        {
+          "physicianId": 1,
+          "specialization": "Cardiology",
+          "license": "ABC123",
+          "acceptingPatients": true,
+          "clinicId": 101
+        }
+        ```
+    - **Response**: Status of the creation operation
+4. **Delete Physician by ID**:
+    - **URL**: `http://localhost:8080/v1/physicians/{id}`
     - **Method**: DELETE
     - **Response**: Status of the deletion operation
 

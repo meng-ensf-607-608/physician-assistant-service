@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("v1/appointments")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class AppointmentController {
 
     @Autowired

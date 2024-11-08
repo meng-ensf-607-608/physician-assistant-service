@@ -40,24 +40,31 @@
 #### Authentication
 
 1. `POST /auth/register` - Register a new user.
-   ```json
-   Request Body:
-   {
-      "username": "Harneet",
-      "password": "examplePassword"
-   }
-   Response Body: "User Harneet registered successfully"
 
-2. `POST /auth/login` - Authenticate a user and return a JWT token.
-   ```json
    Request Body:
+   ```json
    {
       "username": "Harneet",
       "password": "examplePassword"
    }
-   Response Body: {
-      "token": "eyJhbGciOiJIUzI1NiJ9..."
+   ```
+   Response Body: `"User Harneet registered successfully"`
+
+3. `POST /auth/login` - Authenticate a user and return a JWT token.
+
+   Request Body:
+   ```json
+   {
+      "username": "Harneet",
+      "password": "examplePassword"
    }
+    ```
+   Response Body:
+      ```json
+      {
+          "token": "eyJhbGciOiJIUzI1NiJ9..."
+      }
+      ```
 
 ### Endpoints
 

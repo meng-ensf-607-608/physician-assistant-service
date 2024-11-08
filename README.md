@@ -10,7 +10,7 @@
 
 1. **Clone the Repository**:
     ```sh
-    git clone <repository-url>
+    git clone https://github.com/meng-ensf-607-608/physician-assistant-service.git
     cd physician-assistant-service
     ```
 

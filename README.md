@@ -39,7 +39,7 @@
 
 #### Authentication
 
-1. `POST /auth/register` - Register a new user.
+1. `POST http://localhost:8080/auth/register` - Register a new user.
 
    Request Body:
    ```json
@@ -50,7 +50,7 @@
    ```
    Response Body: `"User Harneet registered successfully"`
 
-3. `POST /auth/login` - Authenticate a user and return a JWT token.
+3. `POST http://localhost:8080/auth/login` - Authenticate a user and return a JWT token.
 
    Request Body:
    ```json

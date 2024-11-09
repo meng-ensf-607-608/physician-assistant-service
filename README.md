@@ -35,6 +35,23 @@
     mvn spring-boot:run
     ```
 
+## Running the application as a docker container (alternative to steps 3 & 4 above)
+If you prefer to run the application as a docker container, you can do so following the below steps.
+
+1. **Install Docker Engine**:
+   For instructions on how to install Docker Engine on your machine, see: https://docs.docker.com/engine/install/
+
+
+2. **Build the image**:
+    ```sh
+    docker build -t physician-assistant-service .
+    ```
+
+3. **Run the Application**:
+    ```sh
+    docker run -d --name physician-assistant -p 8080:8080 physician-assistant-service 
+    ```
+
 ## Accessing the Application
 
 #### Authentication

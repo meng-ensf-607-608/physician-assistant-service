@@ -29,9 +29,9 @@ public class Appointment {
     private Long physicianId;
 
     /**
-     * Scheduled appointment time.
+     * Scheduled appointment start time.
      */
-    private LocalDateTime appointmentTime;
+    private LocalDateTime startTime;
 
     /**
      * Current status of the appointment.
@@ -39,17 +39,12 @@ public class Appointment {
     private String status;
 
     /**
-     * If rescheduled, the new appointment time (NULL if not rescheduled).
+     * The time the appointment was created.
      */
-    private LocalDateTime rescheduledTime;
-
-    /**
-     * The time the appointment was booked.
-     */
-    private LocalDateTime bookingTime;
+    private LocalDateTime createdAt;
 
     /**
      * End time of the appointment.
      */
-    private LocalDateTime appointmentEndTime;
+    private LocalDateTime endTime;
 }

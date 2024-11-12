@@ -30,8 +30,8 @@ class AppointmentServiceTest {
 
     @Test
     void getAllAppointmentsReturnsListOfAppointments() {
-        Appointment appointment1 = new Appointment(1L, 201L, 1L, LocalDateTime.now(), "BOOKED", null, LocalDateTime.now(), LocalDateTime.now().plusMinutes(30));
-        Appointment appointment2 = new Appointment(2L, 202L, 2L, LocalDateTime.now(), "BOOKED", null, LocalDateTime.now(), LocalDateTime.now().plusMinutes(30));
+        Appointment appointment1 = new Appointment(1L, 201L, 1L, LocalDateTime.now(), "BOOKED", LocalDateTime.now(), LocalDateTime.now().plusMinutes(30));
+        Appointment appointment2 = new Appointment(2L, 202L, 2L, LocalDateTime.now(), "BOOKED", LocalDateTime.now(), LocalDateTime.now().plusMinutes(30));
         when(appointmentRepository.findAll()).thenReturn(Arrays.asList(appointment1, appointment2));
 
         List<Appointment> appointments = appointmentService.getAllAppointments();
@@ -42,7 +42,7 @@ class AppointmentServiceTest {
 
     @Test
     void getAppointmentByIdReturnsAppointment() {
-        Appointment appointment = new Appointment(1L, 201L, 1L, LocalDateTime.now(), "BOOKED", null, LocalDateTime.now(), LocalDateTime.now().plusMinutes(30));
+        Appointment appointment = new Appointment(1L, 201L, 1L, LocalDateTime.now(), "BOOKED", LocalDateTime.now(), LocalDateTime.now().plusMinutes(30));
         when(appointmentRepository.findById(1L)).thenReturn(appointment);
 
         Appointment foundAppointment = appointmentService.getAppointmentById(1L);
@@ -53,8 +53,8 @@ class AppointmentServiceTest {
 
     @Test
     void getAppointmentsByPhysicianIdReturnsListOfAppointments() {
-        Appointment appointment1 = new Appointment(1L, 201L, 1L, LocalDateTime.now(), "BOOKED", null, LocalDateTime.now(), LocalDateTime.now().plusMinutes(30));
-        Appointment appointment2 = new Appointment(2L, 202L, 1L, LocalDateTime.now(), "BOOKED", null, LocalDateTime.now(), LocalDateTime.now().plusMinutes(30));
+        Appointment appointment1 = new Appointment(1L, 201L, 1L, LocalDateTime.now(), "BOOKED", LocalDateTime.now(), LocalDateTime.now().plusMinutes(30));
+        Appointment appointment2 = new Appointment(2L, 202L, 1L, LocalDateTime.now(), "BOOKED", LocalDateTime.now(), LocalDateTime.now().plusMinutes(30));
         when(appointmentRepository.findByPhysicianId(1L)).thenReturn(Arrays.asList(appointment1, appointment2));
 
         List<Appointment> appointments = appointmentService.getAppointmentsByPhysicianId(1L);
@@ -65,7 +65,7 @@ class AppointmentServiceTest {
 
     @Test
     void createAppointmentSavesAppointment() {
-        Appointment appointment = new Appointment(1L, 201L, 1L, LocalDateTime.now(), "BOOKED", null, LocalDateTime.now(), LocalDateTime.now().plusMinutes(30));
+        Appointment appointment = new Appointment(1L, 201L, 1L, LocalDateTime.now(), "BOOKED", LocalDateTime.now(), LocalDateTime.now().plusMinutes(30));
         when(appointmentRepository.save(appointment)).thenReturn(1);
 
         int result = appointmentService.saveAppointment(appointment);

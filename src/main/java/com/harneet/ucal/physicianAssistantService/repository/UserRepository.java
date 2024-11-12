@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 @Repository
 public class UserRepository {
@@ -19,19 +20,25 @@ public class UserRepository {
         @Override
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {
             User user = new User();
-            user.setId(rs.getLong("id"));
-            user.setUsername(rs.getString("username"));
+            user.setUserId(rs.getLong("user_id"));
+            user.setName(rs.getString("name"));
             user.setPassword(rs.getString("password"));
+            user.setAddress(rs.getString("address"));
+            Timestamp createdAt = rs.getTimestamp("created_at");
+            if (createdAt!=null) user.setCreatedAt(createdAt.toLocalDateTime());
+            user.setEmail(rs.getString("email"));
+            user.setPhoneNumber(rs.getString("phone_number"));
+            user.setRole(rs.getString("role"));
             return user;
         }
     }
 
     public User findByUsername(String username) {
-        return jdbcTemplate.queryForObject("SELECT * FROM users WHERE username = ?", new UserRowMapper(), username);
+        return jdbcTemplate.queryForObject("SELECT * FROM USER WHERE email = ?", new UserRowMapper(), username);
     }
 
-    public int save(User user) {
-        return jdbcTemplate.update("INSERT INTO users (username, password) VALUES (?, ?)",
-                user.getUsername(), user.getPassword());
+    public void save(User user) {
+        jdbcTemplate.update("INSERT INTO USER (name, password, address, created_at, email, phone_number, role) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                user.getName(), user.getPassword(), user.getAddress(), user.getCreatedAt(), user.getEmail(), user.getPhoneNumber(), user.getRole());
     }
 }

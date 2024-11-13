@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Repository
@@ -26,19 +27,21 @@ public class AppointmentRepository {
             appointment.setStartTime(rs.getTimestamp("start_time").toLocalDateTime());
             appointment.setStatus(rs.getString("status"));
             appointment.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
-            appointment.setEndTime(rs.getTimestamp("end_time").toLocalDateTime());
+            Timestamp endTime = rs.getTimestamp("end_time");
+            if (endTime != null) appointment.setEndTime(endTime.toLocalDateTime());
             return appointment;
         }
     }
 
-    public List<Appointment> findAll() {
-        return jdbcTemplate.query("SELECT * FROM APPOINTMENT", new AppointmentRowMapper());
+    public List<Appointment> findAll(String username) {
+        return jdbcTemplate.query("SELECT * FROM APPOINTMENT WHERE physician_id IN (SELECT user_id FROM USER WHERE email = ? ) AND status = 'Scheduled' AND start_time >= NOW()", new AppointmentRowMapper(), username);
     }
 
     public Appointment findById(Long id) {
         return jdbcTemplate.queryForObject("SELECT * FROM APPOINTMENT WHERE appointment_id = ?", new AppointmentRowMapper(), id);
     }
 
+    @Deprecated
     public List<Appointment> findByPhysicianId(Long physicianId) {
         return jdbcTemplate.query("SELECT * FROM APPOINTMENT WHERE physician_id = ?", new AppointmentRowMapper(), physicianId);
     }

@@ -16,7 +16,7 @@ public class PhysicianService {
         return physicianRepository.findAll();
     }
 
-    public Physician getPhysicianById(Long id) {
-        return physicianRepository.findById(id);
+    public Physician getPhysicianByUserName(String username) {
+        return physicianRepository.findByUsername(username);
     }
 }

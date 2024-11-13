@@ -12,8 +12,8 @@ public class AppointmentService {
     @Autowired
     private AppointmentRepository appointmentRepository;
 
-    public List<Appointment> getAllAppointments() {
-        return appointmentRepository.findAll();
+    public List<Appointment> getAllAppointments(String username) {
+        return appointmentRepository.findAll(username);
     }
 
     public Appointment getAppointmentById(Long id) {

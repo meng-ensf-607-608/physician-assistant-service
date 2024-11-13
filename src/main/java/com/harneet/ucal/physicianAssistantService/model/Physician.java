@@ -13,14 +13,14 @@ public class Physician {
     private Long physicianId;
 
     /**
-     * Specialization of the physician.
+     * Foreign key reference to the Clinic table.
      */
-    private String specialization;
+    private Long clinicId;
 
     /**
-     * License number of the physician.
+     * Specialization of the physician.
      */
-    private String license;
+    private String specialisation;
 
     /**
      * Indicates if the physician is accepting new patients.
@@ -28,7 +28,7 @@ public class Physician {
     private Boolean acceptingPatients;
 
     /**
-     * Foreign key reference to the Clinic table.
+     * License number of the physician.
      */
-    private Long clinicId;
+    private String license;
 }

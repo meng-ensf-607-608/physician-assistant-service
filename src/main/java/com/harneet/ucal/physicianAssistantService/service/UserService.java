@@ -26,6 +26,10 @@ public class UserService {
         }
     }
 
+    public User findByUsername(String username){
+        return userRepository.findByUsername(username);
+    }
+
     private boolean isValidEmail(String email) {
         return EMAIL_PATTERN.matcher(email).find();
     }

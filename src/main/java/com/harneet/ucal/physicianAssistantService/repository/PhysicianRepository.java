@@ -16,12 +16,16 @@ public class PhysicianRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    public Physician findByUsername(String username) {
+        return jdbcTemplate.queryForObject("SELECT * FROM PHYSICIAN WHERE physician_id IN (SELECT user_id FROM USER WHERE email = ?)", new PhysicianRowMapper(), username);
+    }
+
     private static final class PhysicianRowMapper implements RowMapper<Physician> {
         @Override
         public Physician mapRow(ResultSet rs, int rowNum) throws SQLException {
             Physician physician = new Physician();
             physician.setPhysicianId(rs.getLong("physician_id"));
-            physician.setSpecialization(rs.getString("specialization"));
+            physician.setSpecialisation(rs.getString("specialisation"));
             physician.setLicense(rs.getString("license"));
             physician.setAcceptingPatients(rs.getBoolean("accepting_patients"));
             physician.setClinicId(rs.getLong("clinic_id"));
@@ -30,19 +34,15 @@ public class PhysicianRepository {
     }
 
     public List<Physician> findAll() {
-        return jdbcTemplate.query("SELECT * FROM physician", new PhysicianRowMapper());
-    }
-
-    public Physician findById(Long id) {
-        return jdbcTemplate.queryForObject("SELECT * FROM physician WHERE physician_id = ?", new PhysicianRowMapper(), id );
+        return jdbcTemplate.query("SELECT * FROM PHYSICIAN", new PhysicianRowMapper());
     }
 
     public int save(Physician physician) {
-        return jdbcTemplate.update("INSERT INTO physician (physician_id, specialization, license, accepting_patients, clinic_id) VALUES (?, ?, ?, ?, ?)",
-                physician.getPhysicianId(), physician.getSpecialization(), physician.getLicense(), physician.getAcceptingPatients(), physician.getClinicId());
+        return jdbcTemplate.update("INSERT INTO PHYSICIAN (physician_id, specialisation, license, accepting_patients, clinic_id) VALUES (?, ?, ?, ?, ?)",
+                physician.getPhysicianId(), physician.getSpecialisation(), physician.getLicense(), physician.getAcceptingPatients(), physician.getClinicId());
     }
 
     public int deleteById(Long id) {
-        return jdbcTemplate.update("DELETE FROM physician WHERE physician_id = ?", id);
+        return jdbcTemplate.update("DELETE FROM PHYSICIAN WHERE physician_id = ?", id);
     }
 }

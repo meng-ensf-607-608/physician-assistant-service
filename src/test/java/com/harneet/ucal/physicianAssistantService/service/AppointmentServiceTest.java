@@ -32,12 +32,12 @@ class AppointmentServiceTest {
     void getAllAppointmentsReturnsListOfAppointments() {
         Appointment appointment1 = new Appointment(1L, 201L, 1L, LocalDateTime.now(), "BOOKED", LocalDateTime.now(), LocalDateTime.now().plusMinutes(30));
         Appointment appointment2 = new Appointment(2L, 202L, 2L, LocalDateTime.now(), "BOOKED", LocalDateTime.now(), LocalDateTime.now().plusMinutes(30));
-        when(appointmentRepository.findAll()).thenReturn(Arrays.asList(appointment1, appointment2));
+        when(appointmentRepository.findAll("asd")).thenReturn(Arrays.asList(appointment1, appointment2));
 
-        List<Appointment> appointments = appointmentService.getAllAppointments();
+        List<Appointment> appointments = appointmentService.getAllAppointments("1");
 
         assertEquals(2, appointments.size());
-        verify(appointmentRepository, times(1)).findAll();
+        verify(appointmentRepository, times(1)).findAll("asd");
     }
 
     @Test

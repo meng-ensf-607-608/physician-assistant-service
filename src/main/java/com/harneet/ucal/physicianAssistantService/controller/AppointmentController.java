@@ -2,6 +2,7 @@ package com.harneet.ucal.physicianAssistantService.controller;
 
 import com.harneet.ucal.physicianAssistantService.model.Appointment;
 import com.harneet.ucal.physicianAssistantService.service.AppointmentService;
+import com.harneet.ucal.physicianAssistantService.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,9 +16,14 @@ public class AppointmentController {
     @Autowired
     private AppointmentService appointmentService;
 
+    @Autowired
+    private JwtUtil jwtUtil;
+
     @GetMapping("/all")
-    public List<Appointment> getAllAppointments() {
-        return appointmentService.getAllAppointments();
+    public List<Appointment> getAllAppointments(@RequestHeader("Authorization") String authHeader) {
+        String token = authHeader.replace("Bearer ", "");
+        String username = jwtUtil.extractUsername(token);
+        return appointmentService.getAllAppointments(username);
     }
 
     @GetMapping("/{id}")

@@ -61,7 +61,7 @@ If you prefer to run the application as a docker container, you can do so follow
    Request Body:
    ```json
    {
-      "username": "Harneet",
+      "email": "Harneet@ucal.com",
       "password": "examplePassword"
    }
    ```
@@ -72,7 +72,7 @@ If you prefer to run the application as a docker container, you can do so follow
    Request Body:
    ```json
    {
-      "username": "Harneet",
+      "email": "Harneet@ucal.com",
       "password": "examplePassword"
    }
     ```

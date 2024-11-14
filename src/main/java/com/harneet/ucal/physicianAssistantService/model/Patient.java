@@ -25,4 +25,8 @@ public class Patient {
     private String chronicConditions;
 
     private String drugAllergies;
+
+    private String email;
+
+    private String phoneNumber;
 }

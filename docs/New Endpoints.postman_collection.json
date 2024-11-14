@@ -1,0 +1,76 @@
+{
+	"info": {
+		"_postman_id": "2a8dfb91-fab2-4ded-9906-a2c556d87493",
+		"name": "New Endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16700634"
+	},
+	"item": [
+		{
+			"name": "GET User Details",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYXJuZWV0QHVjYWwuY29tIiwiaWF0IjoxNzMxNjA0MTQ5LCJleHAiOjE3MzE2NDAxNDl9.UPH8v-D_q9DqczLJPdGLo7i9G1zYisaeVEMYqgomaq4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/appointments/details/8",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"appointments",
+						"details",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Appt Details",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYXJuZWV0QHVjYWwuY29tIiwiaWF0IjoxNzMxNjA0MTQ5LCJleHAiOjE3MzE2NDAxNDl9.UPH8v-D_q9DqczLJPdGLo7i9G1zYisaeVEMYqgomaq4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"appointmentNotes\": [\n        {\n            \"appointmentId\": 8,\n            \"symptoms\": \"Leg pain\",\n            \"diagnosis\": \"Arthritis\",\n            \"additionalInstructions\": \"Avoid strenuous activities and take prescribed medication\"\n        }\n    ],\n    \"prescriptions\": [\n        {\n            \"appointmentId\": 8,\n            \"createdAt\": \"2024-11-09T15:48:34\",\n            \"medication\": \"Albuterol Capsule\",\n            \"dosage\": \"100mcg\",\n            \"duration\": \"As needed\",\n            \"frequency\": \"Two puffs every 4 hours\"\n        },\n        {\n            \"appointmentId\": 8,\n            \"createdAt\": \"2024-11-09T15:48:34\",\n            \"medication\": \"Combiflame\",\n            \"dosage\": \"500mg\",\n            \"duration\": \"7 days\",\n            \"frequency\": \"Twice a day\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/appointments/update",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"appointments",
+						"update"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

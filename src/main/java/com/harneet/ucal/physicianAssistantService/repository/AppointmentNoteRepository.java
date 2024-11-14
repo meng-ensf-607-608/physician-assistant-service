@@ -31,6 +31,13 @@ public class AppointmentNoteRepository {
         return jdbcTemplate.query(FIND_BY_APPOINTMENT_ID, new AppointmentNoteRowMapper(), appointmentId);
     }
 
+    public void save(List<AppointmentNote> appointmentNotes) {
+        for (AppointmentNote appointmentNote : appointmentNotes) {
+            jdbcTemplate.update("INSERT INTO APPOINTMENT_NOTE (appointment_id, symptoms, diagnosis, additional_instructions) VALUES ( ?, ?, ?, ?)",
+                    appointmentNote.getAppointmentId(), appointmentNote.getSymptoms(), appointmentNote.getDiagnosis(), appointmentNote.getAdditionalInstructions());
+        }
+    }
+
     private static class AppointmentNoteRowMapper implements RowMapper<AppointmentNote> {
         @Override
         public AppointmentNote mapRow(ResultSet rs, int rowNum) throws SQLException {

@@ -6,6 +6,7 @@ import com.harneet.ucal.physicianAssistantService.service.AppointmentDetailsServ
 import com.harneet.ucal.physicianAssistantService.service.AppointmentService;
 import com.harneet.ucal.physicianAssistantService.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,6 +28,11 @@ public class AppointmentController {
     @GetMapping("/details/{appointmentId}")
     public AppointmentDetailsDto getAppointmentDetails(@PathVariable Long appointmentId) {
         return appointmentDetailsService.getAppointmentDetails(appointmentId);
+    }
+
+    @PostMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String updateAppointmentDetails(@RequestBody AppointmentDetailsDto appointmentDetailsDto) {
+        return appointmentService.updateAppointmentDetails(appointmentDetailsDto);
     }
 
     @GetMapping("/all")

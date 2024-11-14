@@ -1,6 +1,7 @@
 package com.harneet.ucal.physicianAssistantService.repository;
 
 import com.harneet.ucal.physicianAssistantService.model.Appointment;
+import com.harneet.ucal.physicianAssistantService.model.AppointmentDetailsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -16,6 +17,18 @@ public class AppointmentRepository {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private PrescriptionRepository prescriptionRepository;
+
+    @Autowired
+    private AppointmentNoteRepository appointmentNoteRepository;
+
+    public int updateAppointmentDetails(AppointmentDetailsDto appointmentDetailsDto) {
+        prescriptionRepository.save(appointmentDetailsDto.getPrescriptions());
+        appointmentNoteRepository.save(appointmentDetailsDto.getAppointmentNotes());
+        return 1;
+    }
 
     private static final class AppointmentRowMapper implements RowMapper<Appointment> {
         @Override

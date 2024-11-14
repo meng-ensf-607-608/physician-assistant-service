@@ -28,6 +28,13 @@ public class PrescriptionRepository {
         return jdbcTemplate.query(FIND_ALL_BY_APPOINTMENT_ID,  new PrescriptionRowMapper(), appointmentId);
     }
 
+    public void save(List<Prescription> prescriptions) {
+        for (Prescription prescription : prescriptions) {
+            jdbcTemplate.update("INSERT INTO PRESCRIPTION (appointment_id, created_at, medication, dosage, duration, frequency) VALUES ( ?, ?, ?, ?, ?, ?)",
+                    prescription.getAppointmentId(), prescription.getCreatedAt(), prescription.getMedication(), prescription.getDosage(), prescription.getDuration(), prescription.getFrequency());
+        }
+    }
+
 //    private List<Long> findAllApptsForPatient(Long appointmentId) {
 //        return jdbcTemplate.query(FIND_ALL_APPOINTMENT_FOR_PATIENT ,  new AppointmentRowMapper(), appointmentId);
 //    }

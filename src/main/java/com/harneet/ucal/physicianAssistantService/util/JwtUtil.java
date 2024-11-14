@@ -7,7 +7,6 @@ import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 
-
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
@@ -23,9 +22,10 @@ public class JwtUtil {
         secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     }
 
-    public String generateToken(String username) {
+    public AuthToken generateToken(String username) {
         Map<String, Object> claims = new HashMap<>();
-        return createToken(claims, username);
+        String jwt = createToken(claims, username);
+        return new AuthToken(jwt, extractAllClaims(jwt).getExpiration());
     }
 
     private String createToken(Map<String, Object> claims, String subject) {

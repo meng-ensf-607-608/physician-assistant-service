@@ -2,6 +2,7 @@ package com.harneet.ucal.physicianAssistantService.controller;
 
 import com.harneet.ucal.physicianAssistantService.model.User;
 import com.harneet.ucal.physicianAssistantService.service.UserService;
+import com.harneet.ucal.physicianAssistantService.util.AuthToken;
 import com.harneet.ucal.physicianAssistantService.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +34,7 @@ public class AuthController {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping("/login")
-    public String login(@RequestBody User user) throws Exception {
+    public AuthToken login(@RequestBody User user) throws Exception {
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword())

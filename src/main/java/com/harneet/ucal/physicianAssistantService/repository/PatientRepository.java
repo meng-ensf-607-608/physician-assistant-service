@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
 
 @Repository
 public class PatientRepository {
@@ -32,6 +35,9 @@ public class PatientRepository {
             patient.setOccupation(rs.getString("occupation"));
             patient.setChronicConditions(rs.getString("chronic_conditions"));
             patient.setDrugAllergies(rs.getString("drug_allergies"));
+            LocalDate birthDate = patient.getDateOfBirth().toLocalDate();
+            int age = Period.between(birthDate, LocalDate.now()).getYears();
+            patient.setAge(age);
             return patient;
         }
     }

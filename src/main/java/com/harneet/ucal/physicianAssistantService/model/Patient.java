@@ -16,6 +16,8 @@ public class Patient {
 
     private String gender;
 
+    private int age;
+
     private LocalDateTime dateOfBirth;
 
     private String occupation;

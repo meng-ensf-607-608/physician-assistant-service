@@ -14,7 +14,7 @@ public class WebConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // Specify the path patterns for CORS
-                        .allowedOrigins("http://localhost:4200") // Allowed origins
+                        .allowedOrigins("http://localhost:4200","http://localhost:8080","https://physician-assistant-database-service-38696173603.us-central1.run.app","https://app.algohelios.com") // Allowed origins
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Allowed HTTP methods
                         .allowedHeaders("*") // Allowed headers
                         .allowCredentials(false); // Allow credentials

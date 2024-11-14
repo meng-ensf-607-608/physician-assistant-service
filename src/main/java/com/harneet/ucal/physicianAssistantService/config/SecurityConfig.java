@@ -73,7 +73,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:4200"));  // Allowed origin
+        configuration.setAllowedOrigins(List.of("http://localhost:4200","http://localhost:8080","https://physician-assistant-database-service-38696173603.us-central1.run.app","https://app.algohelios.com"));  // Allowed origin
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));  // Allowed HTTP methods
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));  // Allowed headers
         configuration.setAllowCredentials(true);  // Allow credentials if needed

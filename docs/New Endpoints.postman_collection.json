@@ -1,37 +1,252 @@
 {
 	"info": {
-		"_postman_id": "2a8dfb91-fab2-4ded-9906-a2c556d87493",
+		"_postman_id": "a528e0eb-1266-4838-8fe1-f70bb08de0d1",
 		"name": "New Endpoints",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "16700634"
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "39607621"
 	},
 	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register",
+					"item": [
+						{
+							"name": "Register a new user",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"demo1@ucal.com\",\n  \"password\": \"demo\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseAuthUrl}}/auth/register"
+							},
+							"response": [
+								{
+									"name": "Register a new user",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"username\": \"demouser\",\n  \"password\": \"demopassword\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseAuthUrl}}/auth/register"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "37"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 08 Nov 2024 01:18:27 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "User demouser registered successfully"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "login",
+					"item": [
+						{
+							"name": "Authenticate a user and return a JWT token",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"demouser\",\n  \"password\": \"demopassword\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseAuthUrl}}/auth/login"
+							},
+							"response": [
+								{
+									"name": "Authenticate a user and return a JWT token",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"username\": \"demouser\",\n  \"password\": \"demopassword\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseAuthUrl}}/auth/login"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "135"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 08 Nov 2024 01:07:30 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZW1vdXNlciIsImlhdCI6MTczMTAyODA1MCwiZXhwIjoxNzMxMDY0MDUwfQ.s_EvQrpqPam3jkc05aDqv-6yU0rhOdnPUfIZ6lkP0qk"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
 		{
 			"name": "GET User Details",
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYXJuZWV0QHVjYWwuY29tIiwiaWF0IjoxNzMxNjA0MTQ5LCJleHAiOjE3MzE2NDAxNDl9.UPH8v-D_q9DqczLJPdGLo7i9G1zYisaeVEMYqgomaq4",
-							"type": "string"
-						}
-					]
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYXJuZWV0QHVjYWwuY29tIiwiaWF0IjoxNzMxNjA0MTQ5LCJleHAiOjE3MzE2NDAxNDl9.UPH8v-D_q9DqczLJPdGLo7i9G1zYisaeVEMYqgomaq4"
+					}
 				},
 				"method": "GET",
 				"header": [],
-				"url": {
-					"raw": "{{baseUrl}}/appointments/details/8",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"appointments",
-						"details",
-						"8"
-					]
-				}
+				"url": "{{baseUrl}}/appointments/details/8"
 			},
 			"response": []
 		},
@@ -40,13 +255,9 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYXJuZWV0QHVjYWwuY29tIiwiaWF0IjoxNzMxNjA0MTQ5LCJleHAiOjE3MzE2NDAxNDl9.UPH8v-D_q9DqczLJPdGLo7i9G1zYisaeVEMYqgomaq4",
-							"type": "string"
-						}
-					]
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYXJuZWV0QHVjYWwuY29tIiwiaWF0IjoxNzMxNjA0MTQ5LCJleHAiOjE3MzE2NDAxNDl9.UPH8v-D_q9DqczLJPdGLo7i9G1zYisaeVEMYqgomaq4"
+					}
 				},
 				"method": "POST",
 				"header": [],
@@ -59,18 +270,213 @@
 						}
 					}
 				},
+				"url": "{{baseUrl}}/appointments/update"
+			},
+			"response": []
+		},
+		{
+			"name": "Get all appointments",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZW1vdXNlciIsImlhdCI6MTczMTAyODA1MCwiZXhwIjoxNzMxMDY0MDUwfQ.s_EvQrpqPam3jkc05aDqv-6yU0rhOdnPUfIZ6lkP0qk"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": "{{baseUrl}}/appointments/all"
+			},
+			"response": [
+				{
+					"name": "Get all appointments",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": "{{baseUrl}}/appointments/all"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 08 Nov 2024 01:13:39 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"appointmentId\": 1,\n        \"patientId\": 201,\n        \"physicianId\": 1,\n        \"appointmentTime\": \"2023-10-01T10:00:00\",\n        \"status\": \"BOOKED\",\n        \"rescheduledTime\": null,\n        \"bookingTime\": \"2023-09-25T09:00:00\",\n        \"appointmentEndTime\": \"2023-10-01T10:30:00\"\n    },\n    {\n        \"appointmentId\": 2,\n        \"patientId\": 202,\n        \"physicianId\": 2,\n        \"appointmentTime\": \"2023-10-02T11:00:00\",\n        \"status\": \"CANCELED\",\n        \"rescheduledTime\": null,\n        \"bookingTime\": \"2023-09-26T10:00:00\",\n        \"appointmentEndTime\": \"2023-10-02T11:30:00\"\n    },\n    {\n        \"appointmentId\": 3,\n        \"patientId\": 203,\n        \"physicianId\": 3,\n        \"appointmentTime\": \"2023-10-03T12:00:00\",\n        \"status\": \"COMPLETED\",\n        \"rescheduledTime\": null,\n        \"bookingTime\": \"2023-09-27T11:00:00\",\n        \"appointmentEndTime\": \"2023-10-03T12:30:00\"\n    },\n    {\n        \"appointmentId\": 4,\n        \"patientId\": 204,\n        \"physicianId\": 4,\n        \"appointmentTime\": \"2023-10-04T13:00:00\",\n        \"status\": \"ONGOING\",\n        \"rescheduledTime\": null,\n        \"bookingTime\": \"2023-09-28T12:00:00\",\n        \"appointmentEndTime\": \"2023-10-04T13:30:00\"\n    },\n    {\n        \"appointmentId\": 5,\n        \"patientId\": 205,\n        \"physicianId\": 5,\n        \"appointmentTime\": \"2023-10-05T14:00:00\",\n        \"status\": \"BOOKED\",\n        \"rescheduledTime\": null,\n        \"bookingTime\": \"2023-09-29T13:00:00\",\n        \"appointmentEndTime\": \"2023-10-05T14:30:00\"\n    },\n    {\n        \"appointmentId\": 6,\n        \"patientId\": 206,\n        \"physicianId\": 6,\n        \"appointmentTime\": \"2023-10-06T15:00:00\",\n        \"status\": \"CANCELED\",\n        \"rescheduledTime\": null,\n        \"bookingTime\": \"2023-09-30T14:00:00\",\n        \"appointmentEndTime\": \"2023-10-06T15:30:00\"\n    },\n    {\n        \"appointmentId\": 7,\n        \"patientId\": 207,\n        \"physicianId\": 7,\n        \"appointmentTime\": \"2023-10-07T16:00:00\",\n        \"status\": \"COMPLETED\",\n        \"rescheduledTime\": null,\n        \"bookingTime\": \"2023-10-01T15:00:00\",\n        \"appointmentEndTime\": \"2023-10-07T16:30:00\"\n    },\n    {\n        \"appointmentId\": 8,\n        \"patientId\": 208,\n        \"physicianId\": 8,\n        \"appointmentTime\": \"2023-10-08T17:00:00\",\n        \"status\": \"ONGOING\",\n        \"rescheduledTime\": null,\n        \"bookingTime\": \"2023-10-02T16:00:00\",\n        \"appointmentEndTime\": \"2023-10-08T17:30:00\"\n    },\n    {\n        \"appointmentId\": 9,\n        \"patientId\": 209,\n        \"physicianId\": 9,\n        \"appointmentTime\": \"2023-10-09T18:00:00\",\n        \"status\": \"BOOKED\",\n        \"rescheduledTime\": null,\n        \"bookingTime\": \"2023-10-03T17:00:00\",\n        \"appointmentEndTime\": \"2023-10-09T18:30:00\"\n    },\n    {\n        \"appointmentId\": 10,\n        \"patientId\": 210,\n        \"physicianId\": 10,\n        \"appointmentTime\": \"2023-10-10T19:00:00\",\n        \"status\": \"CANCELED\",\n        \"rescheduledTime\": null,\n        \"bookingTime\": \"2023-10-04T18:00:00\",\n        \"appointmentEndTime\": \"2023-10-10T19:30:00\"\n    },\n    {\n        \"appointmentId\": 11,\n        \"patientId\": 211,\n        \"physicianId\": 1,\n        \"appointmentTime\": \"2023-10-11T10:00:00\",\n        \"status\": \"COMPLETED\",\n        \"rescheduledTime\": null,\n        \"bookingTime\": \"2023-10-05T09:00:00\",\n        \"appointmentEndTime\": \"2023-10-11T10:30:00\"\n    },\n    {\n        \"appointmentId\": 12,\n        \"patientId\": 212,\n        \"physicianId\": 2,\n        \"appointmentTime\": \"2023-10-12T11:00:00\",\n        \"status\": \"ONGOING\",\n        \"rescheduledTime\": null,\n        \"bookingTime\": \"2023-10-06T10:00:00\",\n        \"appointmentEndTime\": \"2023-10-12T11:30:00\"\n    },\n    {\n        \"appointmentId\": 13,\n        \"patientId\": 213,\n        \"physicianId\": 3,\n        \"appointmentTime\": \"2023-10-13T12:00:00\",\n        \"status\": \"BOOKED\",\n        \"rescheduledTime\": null,\n        \"bookingTime\": \"2023-10-07T11:00:00\",\n        \"appointmentEndTime\": \"2023-10-13T12:30:00\"\n    },\n    {\n        \"appointmentId\": 14,\n        \"patientId\": 214,\n        \"physicianId\": 4,\n        \"appointmentTime\": \"2023-10-14T13:00:00\",\n        \"status\": \"CANCELED\",\n        \"rescheduledTime\": null,\n        \"bookingTime\": \"2023-10-08T12:00:00\",\n        \"appointmentEndTime\": \"2023-10-14T13:30:00\"\n    },\n    {\n        \"appointmentId\": 15,\n        \"patientId\": 215,\n        \"physicianId\": 5,\n        \"appointmentTime\": \"2023-10-15T14:00:00\",\n        \"status\": \"COMPLETED\",\n        \"rescheduledTime\": null,\n        \"bookingTime\": \"2023-10-09T13:00:00\",\n        \"appointmentEndTime\": \"2023-10-15T14:30:00\"\n    },\n    {\n        \"appointmentId\": 16,\n        \"patientId\": 216,\n        \"physicianId\": 6,\n        \"appointmentTime\": \"2023-10-16T15:00:00\",\n        \"status\": \"ONGOING\",\n        \"rescheduledTime\": null,\n        \"bookingTime\": \"2023-10-10T14:00:00\",\n        \"appointmentEndTime\": \"2023-10-16T15:30:00\"\n    },\n    {\n        \"appointmentId\": 17,\n        \"patientId\": 217,\n        \"physicianId\": 7,\n        \"appointmentTime\": \"2023-10-17T16:00:00\",\n        \"status\": \"BOOKED\",\n        \"rescheduledTime\": null,\n        \"bookingTime\": \"2023-10-11T15:00:00\",\n        \"appointmentEndTime\": \"2023-10-17T16:30:00\"\n    },\n    {\n        \"appointmentId\": 18,\n        \"patientId\": 218,\n        \"physicianId\": 8,\n        \"appointmentTime\": \"2023-10-18T17:00:00\",\n        \"status\": \"CANCELED\",\n        \"rescheduledTime\": null,\n        \"bookingTime\": \"2023-10-12T16:00:00\",\n        \"appointmentEndTime\": \"2023-10-18T17:30:00\"\n    },\n    {\n        \"appointmentId\": 19,\n        \"patientId\": 219,\n        \"physicianId\": 9,\n        \"appointmentTime\": \"2023-10-19T18:00:00\",\n        \"status\": \"COMPLETED\",\n        \"rescheduledTime\": null,\n        \"bookingTime\": \"2023-10-13T17:00:00\",\n        \"appointmentEndTime\": \"2023-10-19T18:30:00\"\n    },\n    {\n        \"appointmentId\": 20,\n        \"patientId\": 220,\n        \"physicianId\": 10,\n        \"appointmentTime\": \"2023-10-20T19:00:00\",\n        \"status\": \"ONGOING\",\n        \"rescheduledTime\": null,\n        \"bookingTime\": \"2023-10-14T18:00:00\",\n        \"appointmentEndTime\": \"2023-10-20T19:30:00\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get appointments by physician ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZW1vdXNlciIsImlhdCI6MTczMTAyODA1MCwiZXhwIjoxNzMxMDY0MDUwfQ.s_EvQrpqPam3jkc05aDqv-6yU0rhOdnPUfIZ6lkP0qk"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
 				"url": {
-					"raw": "{{baseUrl}}/appointments/update",
+					"raw": "{{baseUrl}}/appointments/physician/:physicianId",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"appointments",
-						"update"
+						"physician",
+						":physicianId"
+					],
+					"variable": [
+						{
+							"key": "physicianId",
+							"value": "2",
+							"description": "(Required) "
+						}
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Get appointments by physician ID",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/appointments/physician/:physicianId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"appointments",
+								"physician",
+								":physicianId"
+							],
+							"variable": [
+								{
+									"key": "physicianId",
+									"value": "2",
+									"description": "(Required) "
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 08 Nov 2024 01:15:08 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"appointmentId\": 12,\n        \"patientId\": 212,\n        \"physicianId\": 2,\n        \"appointmentTime\": \"2023-10-12T11:00:00\",\n        \"status\": \"ONGOING\",\n        \"rescheduledTime\": null,\n        \"bookingTime\": \"2023-10-06T10:00:00\",\n        \"appointmentEndTime\": \"2023-10-12T11:30:00\"\n    }\n]"
+				}
+			]
 		}
 	]
 }

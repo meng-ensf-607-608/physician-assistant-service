@@ -96,7 +96,7 @@ If you prefer to run the application as a docker container, you can do so follow
    ```
 #### Appointment Endpoints
 
-1. **Get All Appointments**:
+1. **Get All Appointments for the physician that is logged in**:
     - **URL**: `http://localhost:8080/v1/appointments/all`
     - **Method**: GET
     - **Response**: List of all appointments
@@ -105,11 +105,6 @@ If you prefer to run the application as a docker container, you can do so follow
     - **URL**: `http://localhost:8080/v1/appointments/{id}`
     - **Method**: GET
     - **Response**: Appointment details for the given ID
-
-3. **Get Appointments by Physician ID**:
-    - **URL**: `http://localhost:8080/v1/appointments/physician/{physicianId}`
-    - **Method**: GET
-    - **Response**: List of appointments for the given physician ID
 
 4. **Create a New Appointment**:
     - **URL**: `http://localhost:8080/v1/appointments`
@@ -144,7 +139,11 @@ If you prefer to run the application as a docker container, you can do so follow
     - **URL**: `http://localhost:8080/v1/physicians/{id}`
     - **Method**: GET
     - **Response**: Physician details for the given ID
-3. **Create a New Physician**:
+3.  **Get Physician details by ID**:
+    - **URL**: `http://localhost:8080/v1/physician/details}`
+    - **Method**: GET
+    - **Response**: Physician details for the given ID
+4.  **Create a New Physician**:
     - **URL**: `http://localhost:8080/v1/physicians`
     - **Method**: POST
     - **Request Body**:
@@ -158,10 +157,55 @@ If you prefer to run the application as a docker container, you can do so follow
         }
         ```
     - **Response**: Status of the creation operation
-4. **Delete Physician by ID**:
+5. **Delete Physician by ID**:
     - **URL**: `http://localhost:8080/v1/physicians/{id}`
     - **Method**: DELETE
     - **Response**: Status of the deletion operation
+
+#### Appointment details Endpoints
+
+1. **Get the patient information in that appointment, details about previous appointments and prescriptions**:
+   - **URL**: `http://localhost:8080/v1/appointments/details/{id}`
+   - **Method**: GET
+   - **Response**: Information about patient details and history
+
+#### Update Appointment notes  and prescription table Endpoints
+
+1. **Update the appointment notes and prescription table**:
+   - **URL**: `http://localhost:8080/v1/appointments/appointments/update`
+   - **Method**: POST
+   - **Request Body**: 
+   - ```json
+     {
+     "appointmentNotes": [
+     {
+     "appointmentId": 11,
+     "symptoms": "Leg pain",
+     "diagnosis": "Arthritis",
+     "additionalInstructions": "Avoid strenuous activities and take prescribed medication"
+     }
+     ],
+     "prescriptions": [
+     {
+     "appointmentId": 11,
+     "createdAt": "2024-11-09T15:48:34",
+     "medication": "Albuterol Capsule",
+     "dosage": "100mcg",
+     "duration": "As needed",
+     "frequency": "Two puffs every 4 hours"
+     },
+     {
+     "appointmentId": 11,
+     "createdAt": "2024-11-09T15:48:34",
+     "medication": "Combiflame",
+     "dosage": "500mg",
+     "duration": "7 days",
+     "frequency": "Twice a day"
+     }
+     ]
+     }
+     ```
+   - **Response Body**: Updated
 
 ## Additional Information
 

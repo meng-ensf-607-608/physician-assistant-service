@@ -14,10 +14,10 @@ public class WebConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // Specify the path patterns for CORS
-                        .allowedOrigins("*") // Allowed origins
+                        .allowedOrigins("http://localhost:4200") // Allowed origins
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Allowed HTTP methods
                         .allowedHeaders("*") // Allowed headers
-                        .allowCredentials(false); // Allow credentials
+                        .allowCredentials(true); // Allow credentials
             }
         };
     }

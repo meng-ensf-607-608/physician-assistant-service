@@ -1,10 +1,10 @@
 package com.harneet.ucal.physicianAssistantService.model;
 
-import com.harneet.ucal.physicianAssistantService.model.AppointmentNote;
-import com.harneet.ucal.physicianAssistantService.model.Patient;
-import com.harneet.ucal.physicianAssistantService.model.Prescription;
+import lombok.Data;
+
 import java.util.List;
 
+@Data
 public class AppointmentDetailsDto {
     private Patient patient;
     private List<AppointmentNote> appointmentNotes;

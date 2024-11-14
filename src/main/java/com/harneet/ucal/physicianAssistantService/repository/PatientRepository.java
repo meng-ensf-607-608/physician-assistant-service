@@ -15,7 +15,7 @@ public class PatientRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    private static final String FIND_BY_APPT_ID = "SELECT * FROM PATIENT WHERE patient_id patient_id IN (select patient_id from APPOINTMENT where appointment_id = ?)";
+    private static final String FIND_BY_APPT_ID = "SELECT * FROM PATIENT WHERE patient_id IN (select patient_id from APPOINTMENT where appointment_id = ?)";
 
     public Patient findByAppointmentId(Long apptId) {
         return jdbcTemplate.queryForObject(FIND_BY_APPT_ID, new PatientRowMapper(), apptId);

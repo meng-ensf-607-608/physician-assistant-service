@@ -1,6 +1,8 @@
 package com.harneet.ucal.physicianAssistantService.controller;
 
 import com.harneet.ucal.physicianAssistantService.model.Appointment;
+import com.harneet.ucal.physicianAssistantService.model.AppointmentDetailsDto;
+import com.harneet.ucal.physicianAssistantService.service.AppointmentDetailsService;
 import com.harneet.ucal.physicianAssistantService.service.AppointmentService;
 import com.harneet.ucal.physicianAssistantService.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,14 @@ public class AppointmentController {
 
     @Autowired
     private JwtUtil jwtUtil;
+
+    @Autowired
+    private AppointmentDetailsService appointmentDetailsService;
+
+    @GetMapping("/details/{appointmentId}")
+    public AppointmentDetailsDto getAppointmentDetails(@PathVariable Long appointmentId) {
+        return appointmentDetailsService.getAppointmentDetails(appointmentId);
+    }
 
     @GetMapping("/all")
     public List<Appointment> getAllAppointments(@RequestHeader("Authorization") String authHeader) {

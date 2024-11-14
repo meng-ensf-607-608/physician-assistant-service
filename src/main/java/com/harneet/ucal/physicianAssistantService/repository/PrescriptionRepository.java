@@ -16,7 +16,7 @@ public class PrescriptionRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    private static final String FIND_ALL_BY_APPOINTMENT_ID = "SELECT * FROM PRESCRIPTION WHERE appointment_id IN  (SELECT * FROM APPOINTMENT WHERE patient_id IN (select patient_id from APPOINTMENT where appointment_id = ?)";
+    private static final String FIND_ALL_BY_APPOINTMENT_ID = "SELECT * FROM PRESCRIPTION WHERE appointment_id IN  (SELECT appointment_id FROM APPOINTMENT WHERE patient_id IN (select patient_id from APPOINTMENT where appointment_id = ?))";
 //    private static final String FIND_ALL_APPOINTMENT_FOR_PATIENT = "SELECT * FROM APPOINTMENT WHERE patient_id IN (select patient_id from APPOINTMENT where appointment_id = ?)";
 
 //    public List<Prescription> findAllByAppointmentId(Long appointmentId) {

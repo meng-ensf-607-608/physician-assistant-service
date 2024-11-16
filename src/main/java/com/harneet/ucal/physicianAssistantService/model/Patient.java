@@ -29,4 +29,6 @@ public class Patient {
     private String email;
 
     private String phoneNumber;
+
+    private String name;
 }

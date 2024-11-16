@@ -18,7 +18,7 @@ public class PatientRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    private static final String FIND_BY_APPT_ID = "SELECT p.*, u.email, u.phone_number  FROM PATIENT p JOIN USER u ON p.patient_id = u.user_id WHERE p.patient_id IN (SELECT patient_id FROM APPOINTMENT WHERE appointment_id = ?)";
+    private static final String FIND_BY_APPT_ID = "SELECT p.*, u.email, u.phone_number, u.name  FROM PATIENT p JOIN USER u ON p.patient_id = u.user_id WHERE p.patient_id IN (SELECT patient_id FROM APPOINTMENT WHERE appointment_id = ?)";
 
 
     public Patient findByAppointmentId(Long apptId) {
@@ -41,6 +41,7 @@ public class PatientRepository {
             patient.setAge(age);
             patient.setEmail(rs.getString("email"));
             patient.setPhoneNumber(rs.getString("phone_number"));
+            patient.setName(rs.getString("name"));
             return patient;
         }
     }

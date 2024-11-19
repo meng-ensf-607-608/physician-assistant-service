@@ -1,4 +1,4 @@
-package com.harneet.ucal.physicianAssistantService;
+package com.harneet.ucal.physicianAssistantService.util;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

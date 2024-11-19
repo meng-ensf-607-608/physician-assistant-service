@@ -25,7 +25,7 @@ public class PatientRepository {
         return jdbcTemplate.queryForObject(FIND_BY_APPT_ID, new PatientRowMapper(), apptId);
     }
 
-    private static class PatientRowMapper implements RowMapper<Patient> {
+    static class PatientRowMapper implements RowMapper<Patient> {
         @Override
         public Patient mapRow(ResultSet rs, int rowNum) throws SQLException {
             Patient patient = new Patient();

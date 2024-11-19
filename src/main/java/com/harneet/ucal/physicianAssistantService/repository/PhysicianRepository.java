@@ -20,7 +20,7 @@ public class PhysicianRepository {
         return jdbcTemplate.queryForObject("SELECT * FROM PHYSICIAN WHERE physician_id IN (SELECT user_id FROM USER WHERE email = ?)", new PhysicianRowMapper(), username);
     }
 
-    private static final class PhysicianRowMapper implements RowMapper<Physician> {
+    static final class PhysicianRowMapper implements RowMapper<Physician> {
         @Override
         public Physician mapRow(ResultSet rs, int rowNum) throws SQLException {
             Physician physician = new Physician();

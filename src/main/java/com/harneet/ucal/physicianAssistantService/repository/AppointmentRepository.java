@@ -30,7 +30,7 @@ public class AppointmentRepository {
         return 1;
     }
 
-    private static final class AppointmentRowMapper implements RowMapper<Appointment> {
+    static final class AppointmentRowMapper implements RowMapper<Appointment> {
         @Override
         public Appointment mapRow(ResultSet rs, int rowNum) throws SQLException {
             Appointment appointment = new Appointment();

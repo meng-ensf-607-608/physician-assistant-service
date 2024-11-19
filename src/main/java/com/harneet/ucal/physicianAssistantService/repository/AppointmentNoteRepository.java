@@ -18,15 +18,6 @@ public class AppointmentNoteRepository {
 
     private static final String FIND_BY_APPOINTMENT_ID = "SELECT * FROM APPOINTMENT_NOTE WHERE appointment_id IN  (SELECT appointment_id FROM APPOINTMENT WHERE patient_id IN (select patient_id from APPOINTMENT where appointment_id = ?))";
 
-//    public List<AppointmentNote> findByAppointmentId(Long appointmentId) {
-//        List<Long> allAppointmnets = findAllApptsForPatient(appointmentId);
-//        return jdbcTemplate.query(FIND_BY_APPOINTMENT_ID, new AppointmentNoteRowMapper(), allAppointmnets);
-//    }
-//
-//    private List<Long> findAllApptsForPatient(Long appointmentId) {
-//        return jdbcTemplate.query(FIND_ALL_APPOINTMENT_FOR_PATIENT ,  new AppointmentRowMapper(), appointmentId);
-//    }
-
     public List<AppointmentNote> findByAppointmentId(Long appointmentId) {
         return jdbcTemplate.query(FIND_BY_APPOINTMENT_ID, new AppointmentNoteRowMapper(), appointmentId);
     }
@@ -38,7 +29,7 @@ public class AppointmentNoteRepository {
         }
     }
 
-    private static class AppointmentNoteRowMapper implements RowMapper<AppointmentNote> {
+    static class AppointmentNoteRowMapper implements RowMapper<AppointmentNote> {
         @Override
         public AppointmentNote mapRow(ResultSet rs, int rowNum) throws SQLException {
             AppointmentNote appointmentNote = new AppointmentNote();

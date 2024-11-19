@@ -1,7 +1,6 @@
 package com.harneet.ucal.physicianAssistantService.repository;
 
 import com.harneet.ucal.physicianAssistantService.model.Prescription;
-import com.harneet.ucal.physicianAssistantService.repository.PrescriptionRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;

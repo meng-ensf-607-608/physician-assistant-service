@@ -29,7 +29,7 @@ public class PrescriptionRepository {
         }
     }
 
-    private static class PrescriptionRowMapper implements RowMapper<Prescription> {
+    static class PrescriptionRowMapper implements RowMapper<Prescription> {
         @Override
         public Prescription mapRow(ResultSet rs, int rowNum) throws SQLException {
             Prescription prescription = new Prescription();

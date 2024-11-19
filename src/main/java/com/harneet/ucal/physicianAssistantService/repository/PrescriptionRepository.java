@@ -39,7 +39,7 @@ public class PrescriptionRepository {
 //        return jdbcTemplate.query(FIND_ALL_APPOINTMENT_FOR_PATIENT ,  new AppointmentRowMapper(), appointmentId);
 //    }
 
-    private static class PrescriptionRowMapper implements RowMapper<Prescription> {
+    static class PrescriptionRowMapper implements RowMapper<Prescription> {
         @Override
         public Prescription mapRow(ResultSet rs, int rowNum) throws SQLException {
             Prescription prescription = new Prescription();

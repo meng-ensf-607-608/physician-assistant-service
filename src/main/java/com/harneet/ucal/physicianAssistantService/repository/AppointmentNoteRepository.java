@@ -38,7 +38,7 @@ public class AppointmentNoteRepository {
         }
     }
 
-    private static class AppointmentNoteRowMapper implements RowMapper<AppointmentNote> {
+    static class AppointmentNoteRowMapper implements RowMapper<AppointmentNote> {
         @Override
         public AppointmentNote mapRow(ResultSet rs, int rowNum) throws SQLException {
             AppointmentNote appointmentNote = new AppointmentNote();

@@ -17,12 +17,6 @@ public class PrescriptionRepository {
     private JdbcTemplate jdbcTemplate;
 
     private static final String FIND_ALL_BY_APPOINTMENT_ID = "SELECT * FROM PRESCRIPTION WHERE appointment_id IN  (SELECT appointment_id FROM APPOINTMENT WHERE patient_id IN (select patient_id from APPOINTMENT where appointment_id = ?))";
-//    private static final String FIND_ALL_APPOINTMENT_FOR_PATIENT = "SELECT * FROM APPOINTMENT WHERE patient_id IN (select patient_id from APPOINTMENT where appointment_id = ?)";
-
-//    public List<Prescription> findAllByAppointmentId(Long appointmentId) {
-//        List<Long> allAppointmnets = findAllApptsForPatient(appointmentId);
-//        return jdbcTemplate.query(FIND_ALL_BY_APPOINTMENT_ID,  new PrescriptionRowMapper(), allAppointmnets);
-//    }
 
     public List<Prescription> findAllByAppointmentId(Long appointmentId) {
         return jdbcTemplate.query(FIND_ALL_BY_APPOINTMENT_ID,  new PrescriptionRowMapper(), appointmentId);
@@ -34,10 +28,6 @@ public class PrescriptionRepository {
                     prescription.getAppointmentId(), prescription.getCreatedAt(), prescription.getMedication(), prescription.getDosage(), prescription.getDuration(), prescription.getFrequency());
         }
     }
-
-//    private List<Long> findAllApptsForPatient(Long appointmentId) {
-//        return jdbcTemplate.query(FIND_ALL_APPOINTMENT_FOR_PATIENT ,  new AppointmentRowMapper(), appointmentId);
-//    }
 
     private static class PrescriptionRowMapper implements RowMapper<Prescription> {
         @Override

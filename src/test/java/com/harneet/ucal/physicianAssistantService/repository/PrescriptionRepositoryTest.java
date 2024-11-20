@@ -63,7 +63,18 @@ public class PrescriptionRepositoryTest {
         when(resultSet.getString("frequency")).thenReturn("Twice a day");
 
         // Mock JdbcTemplate's query method
-        when(jdbcTemplate.query(eq("SELECT * FROM PRESCRIPTION WHERE appointment_id IN  (SELECT appointment_id FROM APPOINTMENT WHERE patient_id IN (select patient_id from APPOINTMENT where appointment_id = ?))"),
+        when(jdbcTemplate.query(eq("SELECT * \n" +
+                        "FROM PRESCRIPTION \n" +
+                        "WHERE appointment_id IN (\n" +
+                        "    SELECT appointment_id \n" +
+                        "    FROM APPOINTMENT \n" +
+                        "    WHERE patient_id IN (\n" +
+                        "        SELECT patient_id \n" +
+                        "        FROM APPOINTMENT \n" +
+                        "        WHERE appointment_id = ?\n" +
+                        "    )\n" +
+                        "    AND created_at >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH)\n" +
+                        ");"),
                 any(PrescriptionRepository.PrescriptionRowMapper.class), eq(appointmentId)))
                 .thenReturn(prescriptionList);
 
@@ -77,7 +88,18 @@ public class PrescriptionRepositoryTest {
         assertEquals("Med2", result.get(1).getMedication());
 
         // Verify JdbcTemplate's query method was called once with the correct parameters
-        verify(jdbcTemplate, times(1)).query(eq("SELECT * FROM PRESCRIPTION WHERE appointment_id IN  (SELECT appointment_id FROM APPOINTMENT WHERE patient_id IN (select patient_id from APPOINTMENT where appointment_id = ?))"),
+        verify(jdbcTemplate, times(1)).query(eq("SELECT * \n" +
+                        "FROM PRESCRIPTION \n" +
+                        "WHERE appointment_id IN (\n" +
+                        "    SELECT appointment_id \n" +
+                        "    FROM APPOINTMENT \n" +
+                        "    WHERE patient_id IN (\n" +
+                        "        SELECT patient_id \n" +
+                        "        FROM APPOINTMENT \n" +
+                        "        WHERE appointment_id = ?\n" +
+                        "    )\n" +
+                        "    AND created_at >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH)\n" +
+                        ");"),
                 any(PrescriptionRepository.PrescriptionRowMapper.class), eq(appointmentId));
     }
 

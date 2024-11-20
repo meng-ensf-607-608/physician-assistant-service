@@ -40,7 +40,18 @@ public class AppointmentNoteRepositoryTest {
 
         // Mock JdbcTemplate behavior
         when(jdbcTemplate.query(
-                eq("SELECT * FROM APPOINTMENT_NOTE WHERE appointment_id IN  (SELECT appointment_id FROM APPOINTMENT WHERE patient_id IN (select patient_id from APPOINTMENT where appointment_id = ?))"),
+                eq("SELECT * \n" +
+                        "FROM APPOINTMENT_NOTE \n" +
+                        "WHERE appointment_id IN (\n" +
+                        "    SELECT appointment_id \n" +
+                        "    FROM APPOINTMENT \n" +
+                        "    WHERE patient_id IN (\n" +
+                        "        SELECT patient_id \n" +
+                        "        FROM APPOINTMENT \n" +
+                        "        WHERE appointment_id = ?\n" +
+                        "    )\n" +
+                        "    AND created_at >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH)\n" +
+                        ");"),
                 any(AppointmentNoteRepository.AppointmentNoteRowMapper.class),
                 eq(appointmentId))
         ).thenReturn(Arrays.asList(appointmentNote));
@@ -57,7 +68,18 @@ public class AppointmentNoteRepositoryTest {
 
         // Verify interactions
         verify(jdbcTemplate, times(1)).query(
-                eq("SELECT * FROM APPOINTMENT_NOTE WHERE appointment_id IN  (SELECT appointment_id FROM APPOINTMENT WHERE patient_id IN (select patient_id from APPOINTMENT where appointment_id = ?))"),
+                eq("SELECT * \n" +
+                        "FROM APPOINTMENT_NOTE \n" +
+                        "WHERE appointment_id IN (\n" +
+                        "    SELECT appointment_id \n" +
+                        "    FROM APPOINTMENT \n" +
+                        "    WHERE patient_id IN (\n" +
+                        "        SELECT patient_id \n" +
+                        "        FROM APPOINTMENT \n" +
+                        "        WHERE appointment_id = ?\n" +
+                        "    )\n" +
+                        "    AND created_at >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH)\n" +
+                        ");"),
                 any(AppointmentNoteRepository.AppointmentNoteRowMapper.class),
                 eq(appointmentId)
         );

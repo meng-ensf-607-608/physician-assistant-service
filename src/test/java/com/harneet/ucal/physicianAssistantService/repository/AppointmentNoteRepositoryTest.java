@@ -93,9 +93,14 @@ public class AppointmentNoteRepositoryTest {
         // Test method
         appointmentNoteRepository.save(Arrays.asList(appointmentNote));
 
-        // Verify that jdbcTemplate.update was called with correct parameters
+        // Verify that jdbcTemplate.update was called with the upsert query (INSERT ON DUPLICATE KEY UPDATE)
         verify(jdbcTemplate, times(1)).update(
-                eq("INSERT INTO APPOINTMENT_NOTE (appointment_id, symptoms, diagnosis, additional_instructions) VALUES ( ?, ?, ?, ?)"),
+                eq("INSERT INTO APPOINTMENT_NOTE (appointment_id, symptoms, diagnosis, additional_instructions) " +
+                        "VALUES (?, ?, ?, ?) " +
+                        "ON DUPLICATE KEY UPDATE " +
+                        "symptoms = VALUES(symptoms), " +
+                        "diagnosis = VALUES(diagnosis), " +
+                        "additional_instructions = VALUES(additional_instructions)"),
                 eq(appointmentNote.getAppointmentId()),
                 eq(appointmentNote.getSymptoms()),
                 eq(appointmentNote.getDiagnosis()),

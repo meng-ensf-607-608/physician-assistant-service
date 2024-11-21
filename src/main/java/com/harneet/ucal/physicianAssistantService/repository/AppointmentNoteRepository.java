@@ -34,9 +34,21 @@ public class AppointmentNoteRepository {
     }
 
     public void save(List<AppointmentNote> appointmentNotes) {
+        String upsertQuery = "INSERT INTO APPOINTMENT_NOTE (appointment_id, symptoms, diagnosis, additional_instructions) " +
+                "VALUES (?, ?, ?, ?) " +
+                "ON DUPLICATE KEY UPDATE " +
+                "symptoms = VALUES(symptoms), " +
+                "diagnosis = VALUES(diagnosis), " +
+                "additional_instructions = VALUES(additional_instructions)";
+
         for (AppointmentNote appointmentNote : appointmentNotes) {
-            jdbcTemplate.update("INSERT INTO APPOINTMENT_NOTE (appointment_id, symptoms, diagnosis, additional_instructions) VALUES ( ?, ?, ?, ?)",
-                    appointmentNote.getAppointmentId(), appointmentNote.getSymptoms(), appointmentNote.getDiagnosis(), appointmentNote.getAdditionalInstructions());
+            jdbcTemplate.update(
+                    upsertQuery,
+                    appointmentNote.getAppointmentId(),
+                    appointmentNote.getSymptoms(),
+                    appointmentNote.getDiagnosis(),
+                    appointmentNote.getAdditionalInstructions()
+            );
         }
     }
 

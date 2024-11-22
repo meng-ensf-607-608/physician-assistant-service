@@ -16,29 +16,43 @@ public class AppointmentNoteRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    private static final String FIND_BY_APPOINTMENT_ID = "SELECT * FROM APPOINTMENT_NOTE WHERE appointment_id IN  (SELECT appointment_id FROM APPOINTMENT WHERE patient_id IN (select patient_id from APPOINTMENT where appointment_id = ?))";
-
-//    public List<AppointmentNote> findByAppointmentId(Long appointmentId) {
-//        List<Long> allAppointmnets = findAllApptsForPatient(appointmentId);
-//        return jdbcTemplate.query(FIND_BY_APPOINTMENT_ID, new AppointmentNoteRowMapper(), allAppointmnets);
-//    }
-//
-//    private List<Long> findAllApptsForPatient(Long appointmentId) {
-//        return jdbcTemplate.query(FIND_ALL_APPOINTMENT_FOR_PATIENT ,  new AppointmentRowMapper(), appointmentId);
-//    }
+    private static final String FIND_BY_APPOINTMENT_ID = "SELECT * \n" +
+            "FROM APPOINTMENT_NOTE \n" +
+            "WHERE appointment_id IN (\n" +
+            "    SELECT appointment_id \n" +
+            "    FROM APPOINTMENT \n" +
+            "    WHERE patient_id IN (\n" +
+            "        SELECT patient_id \n" +
+            "        FROM APPOINTMENT \n" +
+            "        WHERE appointment_id = ?\n" +
+            "    )\n" +
+            "    AND created_at >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH)\n" +
+            ");";
 
     public List<AppointmentNote> findByAppointmentId(Long appointmentId) {
         return jdbcTemplate.query(FIND_BY_APPOINTMENT_ID, new AppointmentNoteRowMapper(), appointmentId);
     }
 
     public void save(List<AppointmentNote> appointmentNotes) {
+        String upsertQuery = "INSERT INTO APPOINTMENT_NOTE (appointment_id, symptoms, diagnosis, additional_instructions) " +
+                "VALUES (?, ?, ?, ?) " +
+                "ON DUPLICATE KEY UPDATE " +
+                "symptoms = VALUES(symptoms), " +
+                "diagnosis = VALUES(diagnosis), " +
+                "additional_instructions = VALUES(additional_instructions)";
+
         for (AppointmentNote appointmentNote : appointmentNotes) {
-            jdbcTemplate.update("INSERT INTO APPOINTMENT_NOTE (appointment_id, symptoms, diagnosis, additional_instructions) VALUES ( ?, ?, ?, ?)",
-                    appointmentNote.getAppointmentId(), appointmentNote.getSymptoms(), appointmentNote.getDiagnosis(), appointmentNote.getAdditionalInstructions());
+            jdbcTemplate.update(
+                    upsertQuery,
+                    appointmentNote.getAppointmentId(),
+                    appointmentNote.getSymptoms(),
+                    appointmentNote.getDiagnosis(),
+                    appointmentNote.getAdditionalInstructions()
+            );
         }
     }
 
-    private static class AppointmentNoteRowMapper implements RowMapper<AppointmentNote> {
+    static class AppointmentNoteRowMapper implements RowMapper<AppointmentNote> {
         @Override
         public AppointmentNote mapRow(ResultSet rs, int rowNum) throws SQLException {
             AppointmentNote appointmentNote = new AppointmentNote();

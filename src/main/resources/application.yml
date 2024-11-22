@@ -3,7 +3,7 @@ spring:
   profiles:
     active: default
   datasource:
-    url: jdbc:mysql://34.28.172.140:3306/physician_db
+    url: jdbc:mysql://34.28.172.140:3306/physician_db_prod
     username: physician-service-user
     password: ENSF@607
     driver-class-name: com.mysql.cj.jdbc.Driver
